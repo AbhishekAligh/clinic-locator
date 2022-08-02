@@ -11,14 +11,20 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/icon.png" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/icon.png" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Montserrat&display=swap",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "./plugins/googlemaps.js",mode:"client" }],
+  plugins: [{ src: "./plugins/googlemaps.js", mode: "client" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -27,6 +33,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    "@nuxtjs/vuetify",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
