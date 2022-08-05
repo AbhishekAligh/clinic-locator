@@ -1,5 +1,6 @@
 <template>
   <div class="ml-8 mr-8">
+    <gmap-autocomplete></gmap-autocomplete>
     <gmap-map
       :center="center"
       :zoom="5"
@@ -17,7 +18,7 @@
           :draggable="false"
           @click="setZoom"
           :visible="marker.visible"
-          :icon="marker.icon"
+          :icon="{ url: require('../static/favicon.png') }"
         />
       </div>
       <gmap-circle
@@ -68,7 +69,8 @@ export default {
           },
           visible: true,
           icon: {
-            url: "http://www.developerdrive.com/wp-content/uploads/2013/08/ddrive.png",
+            // url: "http://www.developerdrive.com/wp-content/uploads/2013/08/ddrive.png",
+            url: "require(''../static/favicon.png')",
           },
         },
       ],
