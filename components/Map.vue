@@ -21,15 +21,19 @@
           :icon="{ url: require('../static/favicon.png') }"
         />
       </div>
-      <gmap-circle
-        v-if="markersVisibility"
-        :editable="false"
-        :draggable="true"
-        :radius="100000"
-        :center="{ lat: 44.0384, lng: -79.2 }"
-        :options="circleOptions"
-        ref="circle"
-      />
+      <div v-if="markersVisibility">
+        <gmap-circle
+          v-for="(marker, index) in markers"
+          :key="index"
+          :editable="false"
+          :draggable="true"
+          :radius="markersRadius"
+          :center="marker.position"
+          :options="circleOptions"
+          ref="circle"
+          @zoom_changed="markersRadius"
+        />
+      </div>
     </gmap-map>
   </div>
 </template>
@@ -38,13 +42,14 @@
 export default {
   data() {
     return {
+      markersRadius: 10000,
       markersVisibility: false,
       circleOptions: {
-        strokeColor: "#FF0000",
-        strokeOpacity: 1,
+        strokeColor: "#7833F3",
+        strokeOpacity: 0.7,
         strokeWeight: 2,
-        fillColor: "#FF0000",
-        fillOpacity: 0,
+        fillColor: "#7833F3",
+        fillOpacity: 1,
       },
       options: {
         mapTypeControl: false,
@@ -76,12 +81,19 @@ export default {
       ],
     };
   },
+  computed: {
+    markersRadius() {
+      getCurrentZoom(zoom)
+    }
+  },
   methods: {
     getCurrentZoom(zoom) {
       console.log(zoom);
       if (zoom >= 5) {
+        console.log(zoom);
         this.markersVisibility = true;
-      } else {
+        zoom>=10? this.markersRadius=200: this.markersRadius
+      }  else {
         this.markersVisibility = false;
       }
     },
